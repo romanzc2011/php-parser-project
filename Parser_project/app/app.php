@@ -18,7 +18,7 @@ function getTransactions($fileName): array {
 
     $fileHandler = fopen($fileName, 'r');
 
-    $transactions = [];
+    $transactions = array();
     while(!feof($fileHandler)){
 
         $transactions[] = fgetcsv($fileHandler);
@@ -31,9 +31,24 @@ function getTransactions($fileName): array {
 }
 
 function money_fmt($number){
+    $fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
     intval($number);
-    number_format($number, 2, '.', ',');
-    return '$'.$number;
 
+    if($number > 0) {
+        $number = '<span style="color: green;">' .
+        $fmt->formatCurrency($number, 'USD'). '</span>';
+    }elseif($number < 0){
+        $number = '<span style="color: red;">' .$fmt->formatCurrency($number, 'USD').
+            '</span>';
+    }
+    return $number;
+}
+
+function intConvert($number){
+    $search = array('$', ',');
+    $number = str_replace($search, '', $number);
+    $intAmount = (double)$number;
+
+    return $intAmount;
 }
 ?>

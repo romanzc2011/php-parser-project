@@ -53,7 +53,7 @@
                     <td><?= $line[0]?></td>
                     <td><?= $line[1] ?></td>
                     <td><?= $line[2] ?></td>
-                    <td><?= $line[3] ?></td>
+                    <td><?= money_fmt(intConvert($line[3])); ?></td>
                 </tr>
             <?php
             //  REMOVE $ AND CONVERT TO INT
@@ -87,7 +87,7 @@
                 <td>
                     <?php
                         $net_total = $total_gain + $total_lose;
-                        echo $net_total;
+                        echo money_fmt($net_total);
                     ?>
                 </td>
             </tr>
