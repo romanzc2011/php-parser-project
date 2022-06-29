@@ -17,4 +17,8 @@ foreach($files as $file){
 }
 
 require VIEWS_PATH . 'transactions.php';
+
+// Clases and Objects
+require_once ''
+$transaction = new Transaction();
 ?>
